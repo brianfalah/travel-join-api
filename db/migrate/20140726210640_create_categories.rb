@@ -21,6 +21,8 @@ class CreateCategories < ActiveRecord::Migration
     Category.create(category_id: 91, name: "Deportes")    
     Category.create(category_id: 90, name: "Diseño")
     Category.create(category_id: 79, name: "Festivales")    
+    #la categoria gastronomia no existe, la inventamos nosotros
+    Category.create(category_id: 999, name: "Gastronomía")
     Category.create(category_id: 82, name: "Literatura")
     Category.create(category_id: 144, name: "Museos")
     Category.create(category_id: 76, name: "Música")

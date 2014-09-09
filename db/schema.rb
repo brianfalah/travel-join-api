@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140824231557) do
+ActiveRecord::Schema.define(:version => 20140726210640) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -36,14 +36,5 @@ ActiveRecord::Schema.define(:version => 20140824231557) do
   end
 
   add_index "pois", ["latitude", "longitude"], :name => "index_pois_on_latitude_and_longitude"
-
-  create_table "users", :force => true do |t|
-    t.string   "facebook_id"
-    t.string   "email"
-    t.string   "name"
-    t.string   "surname"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
 end
