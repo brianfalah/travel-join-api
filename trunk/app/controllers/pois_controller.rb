@@ -8,8 +8,8 @@ class PoisController < ApplicationController
     respond_to do |format|
       if params[:latitude] && params[:longitude]
         pois = Poi.near([params[:latitude], params[:longitude]], 1, :units => :km).
-        includes(:category).all    # puntos a 1 km(se convierte a millas)
-        format.json { render :json => pois.to_json(:methods => %w(category_name)) }
+          includes(:category, :events).all    # puntos a 1 km(se convierte a millas)
+        format.json { render :json => pois }
       else
         render :json => "filtros incompletos", :status => :unprocessable_entity
       end
@@ -22,7 +22,7 @@ class PoisController < ApplicationController
     respond_to do |format|
       if poi.valid?
         poi.save
-        format.json { render :json => poi.to_json(:methods => %w(category_name)) }
+        format.json { render :json => poi.to_json }
       else
         render :json => poi.errors, :status => :unprocessable_entity
         # render poi.errors.to_json
@@ -45,7 +45,7 @@ class PoisController < ApplicationController
     respond_to do |format|
       poi = Poi.find(params[:poi][:id])
       if poi.update_attributes(params[:poi])
-        format.json { render :json => poi.to_json(:methods => %w(category_name)) }
+        format.json { render :json => poi.to_json }
       else
         render :json => poi.errors, :status => :unprocessable_entity
       end
