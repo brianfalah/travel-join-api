@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	def get_or_create
 	    user = User.where(:facebook_id => params[:facebook_id]).first
 	    if user.blank?
-	    	user = User.new(:facebook_id => params[:facebook_id])
+	    	user = User.new(:facebook_id => params[:facebook_id], :name => params[:name],  :surname => params[:surname])
 	  	end
 
 	    respond_to do |format|
