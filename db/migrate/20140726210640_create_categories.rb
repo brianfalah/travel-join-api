@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 class CreateCategories < ActiveRecord::Migration
   def up
   	create_table :categories do |t|
@@ -8,7 +8,6 @@ class CreateCategories < ActiveRecord::Migration
       t.timestamps
     end                 
         
-    #categorias principales(sin categoria padre) sacadas del webservice: http://agendacultural.buenosaires.gob.ar/webservice/response/client.php?Method=GetCategoriasListFiltered&OrdenarPor=Descripcion_es&IdCategoriaPadre=&Orden=ASC&Limit=100
     Category.create(category_id: 88, name: "Aire Libre")
     Category.create(category_id: 91, name: "Artes Visuales")    
     Category.create(category_id: 56, name: "Chicos")
@@ -21,11 +20,11 @@ class CreateCategories < ActiveRecord::Migration
     Category.create(category_id: 91, name: "Deportes")    
     Category.create(category_id: 90, name: "Diseño")
     Category.create(category_id: 79, name: "Festivales")    
-    #la categoria gastronomia no existe, la inventamos nosotros
+    
     Category.create(category_id: 999, name: "Gastronomía")
     Category.create(category_id: 82, name: "Literatura")
     Category.create(category_id: 144, name: "Museos")
-    Category.create(category_id: 76, name: "Música")
+    Category.create(category_id: 76, name: "Musica")
     Category.create(category_id: 77, name: "Teatro")
     Category.create(category_id: 89, name: "Visitas Guiadas")
 

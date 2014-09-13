@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  attr_accessible :facebook_id, :email, :name, :surname
+  attr_accessible :facebook_id, :id, :email, :name, :surname
 end
