@@ -11,6 +11,12 @@ TravelJoinApi::Application.routes.draw do
   #categories
   get "categories/index"
 
+  #groups
+  get "groups/index"
+  post "groups/create"
+  post "groups/update"
+  post "groups/destroy"
+
   match '/auth/:provider/callback', :to => 'sessions#callback'
 
   # The priority is based upon order of creation:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140909145022) do
+ActiveRecord::Schema.define(:version => 20140916175838) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(:version => 20140909145022) do
     t.integer  "poi_id"
     t.datetime "from_date"
     t.datetime "to_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "group_type"
+    t.string   "password"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
