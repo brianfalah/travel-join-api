@@ -8,8 +8,11 @@ class PoisController < ApplicationController
     respond_to do |format|
       if params[:user_id] && params[:latitude] && params[:longitude]
         pois = Poi.where(user_id: params[:user_id])
-        .near([params[:latitude], params[:longitude]], 1, :units => :km).
-          includes(:category, :events).all    # puntos a 1 km(se convierte a millas)
+        .near([params[:latitude], params[:longitude]], 1, :units => :km). # puntos a 1 km(se convierte a millas)
+          includes(:category, :events)
+          if params['categories_ids']
+            pois = pois.where(category_id: eval(params['categories_ids']))
+          end
         format.json { render :json => pois }
       else
         render :json => "filtros incompletos", :status => :unprocessable_entity
