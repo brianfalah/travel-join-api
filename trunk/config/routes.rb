@@ -14,6 +14,7 @@ TravelJoinApi::Application.routes.draw do
   get "categories/index"
 
   #groups
+  get "groups/index"
   post "groups/create"
   post "groups/update"
   post "groups/destroy"
