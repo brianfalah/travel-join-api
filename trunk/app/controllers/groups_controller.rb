@@ -1,22 +1,9 @@
 class GroupsController < ApplicationController
-	skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
-
-  #devuelve el listado de puntos de interes, recibe los filtros a aplicar para la busqueda, obligatoriamente la ubicacion del usuario
-  def index
-    #usamos la gema geocoder para buscar todos los puntos dentro de un determinado radio de la ubicacion del usuario
-    respond_to do |format|
-      if params[:user_id]
-        groups = Group.where(user_id: params[:user_id])
-        format.json { render :json => groups }
-      else
-        render :json => "filtros incompletos", :status => :unprocessable_entity
-      end
-    end
-  end
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   def create
     group = Group.new(params[:group])
-
+    group.users << User.find(params[:group][:user_id])
     respond_to do |format|
       if group.valid?
         group.save
@@ -48,6 +35,6 @@ class GroupsController < ApplicationController
         format.json { head :unprocessable_entity }
       end
     end
-
   end
+  
 end

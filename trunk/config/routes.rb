@@ -1,6 +1,8 @@
 TravelJoinApi::Application.routes.draw do
   #users
   post "users/get_or_create"
+  get "users/get_groups_owned"
+  get "users/get_groups"  
 
   #pois
   get "pois/index"
@@ -12,7 +14,6 @@ TravelJoinApi::Application.routes.draw do
   get "categories/index"
 
   #groups
-  get "groups/index"
   post "groups/create"
   post "groups/update"
   post "groups/destroy"

@@ -17,4 +17,30 @@ class UsersController < ApplicationController
 	    end
 	end
 
+	#devuelve el listado de grupos a los cuales se unio el usuario
+	def get_groups
+		respond_to do |format|
+      if params[:user_id]
+      	user = User.find(params[:user_id])
+        groups = user.groups
+        format.json { render :json => groups }
+      else
+        render :json => "filtros incompletos", :status => :unprocessable_entity
+      end
+    end	
+  end
+
+	#devuelve el listado de grupos de los cuales es dueño el usuario
+  def get_groups_owned
+    respond_to do |format|
+      if params[:user_id]
+      	user = User.find(params[:user_id])
+        groups = user.groups_owned
+        format.json { render :json => groups }
+      else
+        render :json => "filtros incompletos", :status => :unprocessable_entity
+      end
+    end
+  end  
+
 end
