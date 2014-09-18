@@ -3,8 +3,10 @@ class Group < ActiveRecord::Base
 
 	#usuario que creo este grupo
 	belongs_to :user
+
+	has_many :groups_users
 	#usuarios que se unieron al grupo, el creador deberia estar incluido en este conjunto
-	has_and_belongs_to_many :users, :join_table => :groups_users
+	has_many :users, :through => :groups_users
 
 	def serializable_hash(options)
 		super(

@@ -1,6 +1,13 @@
 class GroupsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 
+  def index
+    respond_to do |format|
+      groups = Group.all
+      format.json { render :json => groups }
+    end
+  end
+
   def create
     group = Group.new(params[:group])
     group.users << User.find(params[:group][:user_id])
@@ -36,5 +43,5 @@ class GroupsController < ApplicationController
       end
     end
   end
-  
+
 end
