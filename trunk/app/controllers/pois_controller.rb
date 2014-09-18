@@ -6,13 +6,16 @@ class PoisController < ApplicationController
   def index
     #usamos la gema geocoder para buscar todos los puntos dentro de un determinado radio de la ubicacion del usuario
     respond_to do |format|
-      if params[:user_id] && params[:latitude] && params[:longitude]
+      if params[:user_id] && params[:latitude] && params[:longitude] && params[:max_distance]
         pois = Poi.where(user_id: params[:user_id])
-        .near([params[:latitude], params[:longitude]], 1, :units => :km). # puntos a 1 km(se convierte a millas)
+        .near([params[:latitude], params[:longitude]], params[:max_distance], :units => :km). # puntos a max_distance km
           includes(:category, :events)
-          if params['categories_ids']
-            pois = pois.where(category_id: eval(params['categories_ids']))
-          end
+        if params['categories_ids']
+          pois = pois.where(category_id: eval(params['categories_ids']))
+        end
+        # if params['groups_ids']
+        #   pois = pois.where(category_id: eval(params['categories_ids']))
+        # end
         format.json { render :json => pois }
       else
         render :json => "filtros incompletos", :status => :unprocessable_entity
