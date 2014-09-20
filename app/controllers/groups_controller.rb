@@ -44,4 +44,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join_user
+    groups_user = GroupsUser.where(group_id: params[:group_id], user_id: params[:user_id]).first
+    if groups_user.blank?
+      groups_user = GroupsUser.create(group_id: params[:group_id], user_id: params[:user_id])
+    end
+    respond_to do |format|      
+        format.json { render :json => groups_user.to_json }
+    end
+  end
+
 end

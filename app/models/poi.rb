@@ -7,6 +7,8 @@ class Poi < ActiveRecord::Base
 
   belongs_to  :category
   has_many    :events, :dependent => :destroy
+  has_many    :groups_pois
+  has_many    :groups, :through => :groups_pois
 
   accepts_nested_attributes_for :events, :allow_destroy => true
 
