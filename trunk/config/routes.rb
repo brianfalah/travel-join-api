@@ -18,6 +18,7 @@ TravelJoinApi::Application.routes.draw do
   post "groups/create"
   post "groups/update"
   post "groups/destroy"
+  post "groups/join_user"
 
   match '/auth/:provider/callback', :to => 'sessions#callback'
 
