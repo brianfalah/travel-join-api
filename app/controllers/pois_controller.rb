@@ -78,4 +78,16 @@ class PoisController < ApplicationController
     end
 
   end
+
+  def get_created_by_user
+    #usamos la gema geocoder para buscar todos los puntos dentro de un determinado radio de la ubicacion del usuario
+    respond_to do |format|
+      if params[:user_id]
+        pois = Poi.where(user_id: params['user_id']).includes(:category, :events)                          
+        format.json { render :json => pois }
+      else
+        render :json => "filtros incompletos", :status => :unprocessable_entity
+      end
+    end
+  end
 end

@@ -6,9 +6,10 @@ TravelJoinApi::Application.routes.draw do
 
   #pois
   get "pois/index"
+  get "pois/get_created_by_user"
   post "pois/create"
   post "pois/update"
-  post "pois/destroy"
+  post "pois/destroy"  
 
   #categories
   get "categories/index"
