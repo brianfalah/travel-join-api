@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140919130706) do
+ActiveRecord::Schema.define(:version => 20141007225424) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(:version => 20140919130706) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "groups_interests", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "groups_pois", :force => true do |t|
     t.integer  "group_id"
     t.integer  "poi_id"
@@ -57,6 +64,16 @@ ActiveRecord::Schema.define(:version => 20140919130706) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "interests", :force => true do |t|
+    t.integer  "interest_id"
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "interests", ["interest_id"], :name => "index_interests_on_interest_id"
+  add_index "interests", ["name"], :name => "index_interests_on_name"
+
   create_table "pois", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -70,6 +87,22 @@ ActiveRecord::Schema.define(:version => 20140919130706) do
   end
 
   add_index "pois", ["latitude", "longitude"], :name => "index_pois_on_latitude_and_longitude"
+
+  create_table "tours", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tours_pois", :force => true do |t|
+    t.integer  "tour_id"
+    t.integer  "poi_id"
+    t.integer  "order_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "facebook_id"

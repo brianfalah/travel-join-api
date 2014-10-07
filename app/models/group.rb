@@ -11,6 +11,9 @@ class Group < ActiveRecord::Base
 	has_many :groups_pois
 	has_many :pois, :through => :groups_pois
 
+	has_many :groups_interests
+	has_many :interest, :through => :groups_interests
+
 	def serializable_hash(options)
 		super(
 			:only => [:id, :name, :description, :user_id, :group_type, :password]
