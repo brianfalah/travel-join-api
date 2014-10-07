@@ -15,6 +15,15 @@ TravelJoinApi::Application.routes.draw do
   #categories
   get "categories/index"
 
+  #interests
+  get "interests/index"
+
+  #tours
+  get "tours/get_created_by_user"
+  post "tours/create"
+  post "tours/update"
+  post "tours/destroy"
+
   #groups
   get "groups/index"
   post "groups/create"
