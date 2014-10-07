@@ -2,6 +2,14 @@ class PoisController < ApplicationController
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   before_filter :normalize_params, :only => [:create, :update]
 
+  #devuelve el listado de todos los puntos de interés
+  def indexAll
+    respond_to do |format|
+      pois = Poi.order(:name)
+      format.json { render :json => pois }
+    end
+  end
+
   #devuelve el listado de puntos de interes, recibe los filtros a aplicar para la busqueda, obligatoriamente la ubicacion del usuario
   def index
     #usamos la gema geocoder para buscar todos los puntos dentro de un determinado radio de la ubicacion del usuario
@@ -83,7 +91,7 @@ class PoisController < ApplicationController
     #usamos la gema geocoder para buscar todos los puntos dentro de un determinado radio de la ubicacion del usuario
     respond_to do |format|
       if params[:user_id]
-        pois = Poi.where(user_id: params['user_id']).includes(:category, :events)                          
+        pois = Poi.where(user_id: params['user_id']).includes(:category, :events)
         format.json { render :json => pois }
       else
         render :json => "filtros incompletos", :status => :unprocessable_entity

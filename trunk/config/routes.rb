@@ -2,14 +2,15 @@ TravelJoinApi::Application.routes.draw do
   #users
   post "users/get_or_create"
   get "users/get_groups_owned"
-  get "users/get_groups"  
+  get "users/get_groups"
 
   #pois
+  get "pois/indexAll"
   get "pois/index"
   get "pois/get_created_by_user"
   post "pois/create"
   post "pois/update"
-  post "pois/destroy"  
+  post "pois/destroy"
 
   #categories
   get "categories/index"

@@ -18,7 +18,7 @@ class Poi < ActiveRecord::Base
 
   def serializable_hash(options)
     super(
-      :only => [:id, :name, :category_id, :description,
+      :only => [:id, :name, :category_id, :description, :address,
                 :latitude, :longitude, :user_id],
       :methods => %w(category_name),
       :include => [:events]
